@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin.html
+Disallow: /cart.html
+Disallow: /checkout.html
+Disallow: /profile.html
+Disallow: /wishlist.html
+
+Sitemap: https://emarat5dari.github.io/sitemap.xml

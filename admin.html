@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <title>پنل مدیریت | عمارت ۵ دری</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <meta name="theme-color" content="#0F3D2E">
+  <link rel="icon" href="favicon.ico" sizes="any">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=Noto+Naskh+Arabic:wght@500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- ===================== LOGIN SCREEN ===================== -->
+  <div class="admin-login" id="admin-login-screen">
+    <div class="admin-login__card">
+      <span class="admin-login__logo" aria-hidden="true">
+        <img src="assets/images/logo-mark.png" alt="لوگوی عمارت ۵ دری">
+      </span>
+      <h1>ورود به پنل مدیریت</h1>
+      <p>عمارت ۵ دری — فقط برای مدیران مجاز</p>
+
+      <div class="admin-login__error" id="admin-login-error"></div>
+
+      <form class="admin-login__form" id="admin-login-form">
+        <div class="form-field">
+          <label for="admin-login-email">ایمیل مدیر</label>
+          <input type="email" id="admin-login-email" dir="ltr" required>
+        </div>
+        <div class="form-field">
+          <label for="admin-login-password">رمز عبور</label>
+          <input type="password" id="admin-login-password" required minlength="6">
+        </div>
+        <button type="submit" class="btn btn--primary">ورود</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===================== DASHBOARD SHELL ===================== -->
+  <div class="admin-shell" id="admin-shell" hidden>
+
+    <!-- ---------- SIDEBAR ---------- -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+      <div class="admin-sidebar__brand">
+        <span class="logo__mark" aria-hidden="true">
+          <img src="assets/images/logo-mark.png" alt="لوگوی عمارت ۵ دری">
+        </span>
+        <div>
+          <strong>عمارت ۵ دری</strong>
+          <span>پنل مدیریت</span>
+        </div>
+      </div>
+
+      <nav class="admin-nav" aria-label="منوی مدیریت">
+        <span class="admin-nav__label">کلی</span>
+        <a href="#dashboard-section">
+          <svg viewBox="0 0 24 24"><path d="M4 13h6V4H4v9zm0 7h6v-5H4v5zm10 0h6V11h-6v9zm0-16v5h6V4h-6z"/></svg>
+          داشبورد
+        </a>
+
+        <span class="admin-nav__label">فروشگاه</span>
+        <a href="#products-section">
+          <svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2a3 3 0 1 0 6 0h6a3 3 0 1 0 6 0h2v-5l-3-4z"/></svg>
+          محصولات
+        </a>
+        <a href="#categories-section">
+          <svg viewBox="0 0 24 24"><path d="M4 4h7v7H4V4zm9 0h7v7h-7V4zM4 13h7v7H4v-7zm9 0h7v7h-7v-7z"/></svg>
+          دسته‌بندی‌ها
+        </a>
+        <a href="#orders-section">
+          <svg viewBox="0 0 24 24"><path d="M7 4h-2l-1 2H2v2h2l3.6 7.6-1.4 2.5c-.3.6.1 1.4.8 1.4H18v-2H8.4l.9-1.6h7.5c.4 0 .8-.2.9-.6l3-6.8c.2-.5-.1-1-.6-1H6.2L5.3 4H7z"/></svg>
+          سفارش‌ها
+        </a>
+        <a href="#customers-section">
+          <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4.4 0-8 2.2-8 5v3h16v-3c0-2.8-3.6-5-8-5z"/></svg>
+          مشتریان
+        </a>
+        <a href="#discounts-section">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16v2H4V4zm0 14h16v2H4v-2zm2-9h12l-6 6-6-6z"/></svg>
+          کدهای تخفیف
+        </a>
+
+        <span class="admin-nav__label">محتوای سایت</span>
+        <a href="#slider-section">
+          <svg viewBox="0 0 24 24"><path d="M4 5h16v10H4V5zm2 12h12v2H6v-2z"/></svg>
+          اسلایدر صفحه اصلی
+        </a>
+        <a href="#gallery-section">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4V4zm2 2v9l3-3 2 2 4-5 3 4V6H6z"/></svg>
+          گالری
+        </a>
+        <a href="#chat-section">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6 2 11c0 2.2.9 4.2 2.4 5.7L4 21l4.5-1.5c1.1.3 2.3.5 3.5.5 5.5 0 10-4 10-9s-4.5-9-10-9z"/></svg>
+          گفتگوی پشتیبانی
+          <span class="badge" id="admin-nav-chat-badge" hidden>0</span>
+        </a>
+        <a href="#settings-section">
+          <svg viewBox="0 0 24 24"><path d="M12 15.5A3.5 3.5 0 1 1 12 8.5a3.5 3.5 0 0 1 0 7zm7.4-3.5c0-.6-.1-1.2-.2-1.8l2-1.6-2-3.4-2.4 1c-.9-.7-1.9-1.3-3-1.6L13.5 2h-3l-.3 2.6c-1.1.3-2.1.9-3 1.6l-2.4-1-2 3.4 2 1.6c-.1.6-.2 1.2-.2 1.8s.1 1.2.2 1.8l-2 1.6 2 3.4 2.4-1c.9.7 1.9 1.3 3 1.6l.3 2.6h3l.3-2.6c1.1-.3 2.1-.9 3-1.6l2.4 1 2-3.4-2-1.6c.1-.6.2-1.2.2-1.8z"/></svg>
+          تنظیمات
+        </a>
+      </nav>
+
+      <div class="admin-sidebar__footer">
+        <button type="button" class="admin-sidebar__logout js-logout">
+          <svg viewBox="0 0 24 24"><path d="M16 13v-2H7V8l-5 4 5 4v-3h9zM20 3h-8v2h8v14h-8v2h8a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/></svg>
+          خروج از پنل مدیریت
+        </button>
+      </div>
+    </aside>
+
+    <!-- ---------- MAIN AREA ---------- -->
+    <div class="admin-main">
+
+      <header class="admin-topbar">
+        <button class="admin-sidebar-toggle" id="admin-sidebar-toggle" aria-label="باز کردن منو">
+          <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z"/></svg>
+        </button>
+        <h1 class="admin-topbar__title">پنل مدیریت عمارت ۵ دری</h1>
+        <div class="admin-topbar__actions">
+          <div class="admin-topbar__profile">
+            <span class="admin-topbar__avatar">A</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="admin-content">
+
+        <!-- ---------- DASHBOARD / STATISTICS ---------- -->
+        <section id="dashboard-section">
+          <div class="admin-page-header">
+            <div><h1>داشبورد</h1><p class="admin-breadcrumbs">نمای کلی عملکرد فروشگاه</p></div>
+          </div>
+          <div class="admin-stats-grid" id="admin-stats-grid">
+            <div class="admin-stat-card">
+              <div><span class="admin-stat-card__label">تعداد محصولات</span><div class="admin-stat-card__value" id="stat-products">0</div></div>
+              <span class="admin-stat-card__icon"><svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2a3 3 0 1 0 6 0h6a3 3 0 1 0 6 0h2v-5l-3-4z"/></svg></span>
+            </div>
+            <div class="admin-stat-card">
+              <div><span class="admin-stat-card__label">تعداد سفارش‌ها</span><div class="admin-stat-card__value" id="stat-orders">0</div></div>
+              <span class="admin-stat-card__icon"><svg viewBox="0 0 24 24"><path d="M7 4h-2l-1 2H2v2h2l3.6 7.6-1.4 2.5c-.3.6.1 1.4.8 1.4H18v-2H8.4l.9-1.6h7.5c.4 0 .8-.2.9-.6l3-6.8c.2-.5-.1-1-.6-1H6.2L5.3 4H7z"/></svg></span>
+            </div>
+            <div class="admin-stat-card">
+              <div><span class="admin-stat-card__label">تعداد مشتریان</span><div class="admin-stat-card__value" id="stat-customers">0</div></div>
+              <span class="admin-stat-card__icon"><svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4.4 0-8 2.2-8 5v3h16v-3c0-2.8-3.6-5-8-5z"/></svg></span>
+            </div>
+            <div class="admin-stat-card">
+              <div><span class="admin-stat-card__label">درآمد اخیر</span><div class="admin-stat-card__value" id="stat-revenue">۰ تومان</div></div>
+              <span class="admin-stat-card__icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v2H4V4zm0 14h16v2H4v-2zm2-9h12l-6 6-6-6z"/></svg></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---------- PRODUCTS ---------- -->
+        <section id="products-section">
+          <div class="admin-card">
+            <div class="admin-card__header">
+              <h2>مدیریت محصولات</h2>
+              <button type="button" class="btn btn--primary" id="add-product-btn">+ افزودن محصول</button>
+            </div>
+            <div class="admin-table-wrap">
+              <table class="admin-table" id="admin-products-table">
+                <thead>
+                  <tr><th>تصویر</th><th>نام محصول</th><th>دسته‌بندی</th><th>قیمت</th><th>تخفیف</th><th>موجودی</th><th>عملیات</th></tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---------- CATEGORIES ---------- -->
+        <section id="categories-section">
+          <div class="admin-card">
+            <div class="admin-card__header">
+              <h2>مدیریت دسته‌بندی‌ها</h2>
+              <button type="button" class="btn btn--primary" id="add-category-btn">+ افزودن دسته‌بندی</button>
+            </div>
+            <div class="admin-table-wrap">
+              <table class="admin-table" id="admin-categories-table">
+                <thead><tr><th>تصویر</th><th>نام دسته‌بندی</th><th>ترتیب</th><th>عملیات</th></tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---------- ORDERS ---------- -->
+        <section id="orders-section">
+          <div class="admin-card">
+            <div class="admin-card__header"><h2>مدیریت سفارش‌ها</h2></div>
+            <div class="admin-table-wrap">
+              <table class="admin-table" id="admin-orders-table">
+                <thead><tr><th>شماره سفارش</th><th>مشتری</th><th>تاریخ</th><th>مبلغ</th><th>وضعیت</th><th>عملیات</th></tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---------- CUSTOMERS ---------- -->
+        <section id="customers-section">
+          <div class="admin-card">
+            <div class="admin-card__header"><h2>مشتریان</h2></div>
+            <div class="admin-table-wrap">
+              <table class="admin-table" id="admin-customers-table">
+                <thead><tr><th>نام</th><th>ایمیل</th><th>تلفن</th><th>تاریخ عضویت</th></tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---------- DISCOUNTS ---------- -->
+        <section id="discounts-section">
+          <div class="admin-card">
+            <div class="admin-card__header">
+              <h2>کدهای تخفیف</h2>
+              <button type="button" class="btn btn--primary" id="add-discount-btn">+ افزودن کد تخفیف</button>
+            </div>
+            <div class="admin-table-wrap">
+              <table class="admin-table" id="admin-discounts-table">
+                <thead><tr><th>کد</th><th>درصد تخفیف</th><th>تاریخ انقضا</th><th>وضعیت</th><th>عملیات</th></tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---------- SLIDER ---------- -->
+        <section id="slider-section">
+          <div class="admin-card">
+            <div class="admin-card__header">
+              <h2>اسلایدر صفحه اصلی</h2>
+              <button type="button" class="btn btn--primary" id="add-slide-btn">+ افزودن اسلاید</button>
+            </div>
+            <div id="admin-slider-list"></div>
+          </div>
+        </section>
+
+        <!-- ---------- GALLERY ---------- -->
+        <section id="gallery-section">
+          <div class="admin-card">
+            <div class="admin-card__header"><h2>گالری تصاویر</h2></div>
+            <div class="admin-card__body">
+              <div class="image-upload-grid" id="admin-gallery-grid"></div>
+              <div class="image-upload-dropzone image-upload-dropzone--small" id="admin-gallery-dropzone">
+                <svg viewBox="0 0 24 24"><path d="M12 3 8 7h3v6h2V7h3l-4-4zM5 20h14v-2H5v2z"/></svg>
+                افزودن تصویر به گالری
+              </div>
+              <input type="file" id="gallery-image-input" accept="image/*" multiple hidden>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---------- SUPPORT CHAT ---------- -->
+        <section id="chat-section">
+          <div class="admin-card">
+            <div class="admin-card__header"><h2>گفتگوی پشتیبانی</h2></div>
+            <div class="admin-chat-layout">
+              <div class="admin-chat-list" id="admin-chat-list"></div>
+              <div class="admin-chat-panel">
+                <div class="admin-chat-panel__header" id="admin-chat-panel-header"></div>
+                <div class="admin-chat-panel__messages" id="admin-chat-panel-messages">
+                  <div class="admin-chat-empty" id="admin-chat-empty">
+                    <svg viewBox="0 0 24 24" width="40" height="40"><path fill="currentColor" d="M12 2C6.5 2 2 6 2 11c0 2.2.9 4.2 2.4 5.7L4 21l4.5-1.5c1.1.3 2.3.5 3.5.5 5.5 0 10-4 10-9s-4.5-9-10-9z"/></svg>
+                    <span>یک گفتگو را از لیست انتخاب کنید</span>
+                  </div>
+                </div>
+                <form class="admin-chat-panel__form" id="admin-chat-panel-form">
+                  <label for="admin-chat-panel-input" class="visually-hidden">پاسخ شما</label>
+                  <input type="text" id="admin-chat-panel-input" placeholder="پاسخ خود را بنویسید...">
+                  <button type="submit" class="btn btn--primary">ارسال</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---------- SETTINGS ---------- -->
+        <section id="settings-section">
+          <div class="admin-card">
+            <div class="admin-card__header"><h2>تنظیمات اطلاعات تماس</h2></div>
+            <div class="admin-card__body">
+              <form id="contact-settings-form" class="admin-form">
+                <div class="admin-form__row">
+                  <div class="form-field">
+                    <label for="settings-phone">شماره تماس</label>
+                    <input type="tel" id="settings-phone" dir="ltr">
+                  </div>
+                  <div class="form-field">
+                    <label for="settings-eitaa">آیدی ایتا</label>
+                    <input type="text" id="settings-eitaa" dir="ltr">
+                  </div>
+                </div>
+                <div class="form-field">
+                  <label for="settings-address">آدرس فروشگاه</label>
+                  <textarea id="settings-address"></textarea>
+                </div>
+                <div class="form-actions">
+                  <button type="submit" class="btn btn--primary">ذخیره تغییرات</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MODALS ===================== -->
+
+  <!-- PRODUCT MODAL -->
+  <div class="admin-modal-overlay" id="product-modal">
+    <div class="admin-modal">
+      <div class="admin-modal__header">
+        <h3 id="product-modal-title">افزودن محصول جدید</h3>
+        <button type="button" class="admin-modal__close" data-modal-close="product-modal">×</button>
+      </div>
+      <form id="product-form">
+        <div class="admin-modal__body">
+          <input type="hidden" id="product-id">
+          <div class="admin-form">
+            <div class="form-field">
+              <label for="product-title">نام محصول <span class="required">*</span></label>
+              <input type="text" id="product-title" required>
+            </div>
+            <div class="admin-form__row">
+              <div class="form-field">
+                <label for="product-category-select">دسته‌بندی</label>
+                <select id="product-category-select"></select>
+              </div>
+              <div class="form-field">
+                <label for="product-price">قیمت (تومان) <span class="required">*</span></label>
+                <input type="number" id="product-price" min="0" required>
+              </div>
+            </div>
+            <div class="admin-form__row">
+              <div class="form-field">
+                <label for="product-discount">درصد تخفیف</label>
+                <input type="number" id="product-discount" min="0" max="100">
+              </div>
+              <div class="form-field">
+                <label for="product-stock">موجودی انبار</label>
+                <input type="number" id="product-stock" min="0">
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="product-description">توضیحات محصول</label>
+              <textarea id="product-description"></textarea>
+            </div>
+            <div class="admin-form__row">
+              <div class="form-checkbox">
+                <input type="checkbox" id="product-featured">
+                <label for="product-featured">نمایش در محصولات ویژه</label>
+              </div>
+              <div class="form-checkbox">
+                <input type="checkbox" id="product-bestseller">
+                <label for="product-bestseller">نمایش در پرفروش‌ترین‌ها</label>
+              </div>
+            </div>
+            <div class="form-field">
+              <label>تصاویر فعلی</label>
+              <div class="image-upload-grid" id="product-existing-images"></div>
+            </div>
+            <div class="form-field">
+              <label>افزودن تصاویر جدید</label>
+              <div class="image-upload-grid" id="product-images-preview"></div>
+              <div class="image-upload-dropzone image-upload-dropzone--small" id="product-images-dropzone">
+                <svg viewBox="0 0 24 24"><path d="M12 3 8 7h3v6h2V7h3l-4-4zM5 20h14v-2H5v2z"/></svg>
+                افزودن تصویر
+              </div>
+              <input type="file" id="product-images-input" accept="image/*" multiple hidden>
+            </div>
+          </div>
+        </div>
+        <div class="admin-modal__footer">
+          <button type="button" class="btn btn--outline" data-modal-close="product-modal">انصراف</button>
+          <button type="submit" class="btn btn--primary">ذخیره محصول</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- CATEGORY MODAL -->
+  <div class="admin-modal-overlay" id="category-modal">
+    <div class="admin-modal">
+      <div class="admin-modal__header">
+        <h3 id="category-modal-title">افزودن دسته‌بندی</h3>
+        <button type="button" class="admin-modal__close" data-modal-close="category-modal">×</button>
+      </div>
+      <form id="category-form">
+        <div class="admin-modal__body admin-form">
+          <input type="hidden" id="category-id">
+          <div class="form-field">
+            <label for="category-name">نام دسته‌بندی <span class="required">*</span></label>
+            <input type="text" id="category-name" required>
+          </div>
+          <div class="form-field">
+            <label for="category-order">ترتیب نمایش</label>
+            <input type="number" id="category-order" min="0">
+          </div>
+          <div class="form-field">
+            <label>تصویر دسته‌بندی</label>
+            <div class="image-upload-grid" id="category-image-preview"></div>
+            <div class="image-upload-dropzone image-upload-dropzone--small" id="category-image-dropzone">
+              <svg viewBox="0 0 24 24"><path d="M12 3 8 7h3v6h2V7h3l-4-4zM5 20h14v-2H5v2z"/></svg>
+              انتخاب تصویر
+            </div>
+            <input type="file" id="category-image-input" accept="image/*" hidden>
+          </div>
+        </div>
+        <div class="admin-modal__footer">
+          <button type="button" class="btn btn--outline" data-modal-close="category-modal">انصراف</button>
+          <button type="submit" class="btn btn--primary">ذخیره دسته‌بندی</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- DISCOUNT MODAL -->
+  <div class="admin-modal-overlay" id="discount-modal">
+    <div class="admin-modal">
+      <div class="admin-modal__header">
+        <h3 id="discount-modal-title">افزودن کد تخفیف</h3>
+        <button type="button" class="admin-modal__close" data-modal-close="discount-modal">×</button>
+      </div>
+      <form id="discount-form">
+        <div class="admin-modal__body admin-form">
+          <input type="hidden" id="discount-id">
+          <div class="form-field">
+            <label for="discount-code">کد تخفیف <span class="required">*</span></label>
+            <input type="text" id="discount-code" dir="ltr" required>
+          </div>
+          <div class="form-field">
+            <label for="discount-percent">درصد تخفیف <span class="required">*</span></label>
+            <input type="number" id="discount-percent" min="1" max="100" required>
+          </div>
+          <div class="form-field">
+            <label for="discount-expires">تاریخ انقضا (اختیاری)</label>
+            <input type="date" id="discount-expires">
+          </div>
+          <div class="form-checkbox">
+            <input type="checkbox" id="discount-active" checked>
+            <label for="discount-active">فعال باشد</label>
+          </div>
+        </div>
+        <div class="admin-modal__footer">
+          <button type="button" class="btn btn--outline" data-modal-close="discount-modal">انصراف</button>
+          <button type="submit" class="btn btn--primary">ذخیره کد تخفیف</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- SLIDE MODAL -->
+  <div class="admin-modal-overlay" id="slide-modal">
+    <div class="admin-modal">
+      <div class="admin-modal__header">
+        <h3>افزودن اسلاید جدید</h3>
+        <button type="button" class="admin-modal__close" data-modal-close="slide-modal">×</button>
+      </div>
+      <form id="slide-form">
+        <div class="admin-modal__body admin-form">
+          <div class="form-field">
+            <label for="slide-title">عنوان</label>
+            <input type="text" id="slide-title">
+          </div>
+          <div class="form-field">
+            <label for="slide-subtitle">زیرعنوان</label>
+            <input type="text" id="slide-subtitle">
+          </div>
+          <div class="admin-form__row">
+            <div class="form-field">
+              <label for="slide-button-text">متن دکمه</label>
+              <input type="text" id="slide-button-text">
+            </div>
+            <div class="form-field">
+              <label for="slide-button-link">لینک دکمه</label>
+              <input type="text" id="slide-button-link" dir="ltr" placeholder="/products.html">
+            </div>
+          </div>
+          <div class="form-field">
+            <label>تصویر اسلاید <span class="required">*</span></label>
+            <div class="image-upload-grid" id="slide-image-preview"></div>
+            <div class="image-upload-dropzone image-upload-dropzone--small" id="slide-image-dropzone">
+              <svg viewBox="0 0 24 24"><path d="M12 3 8 7h3v6h2V7h3l-4-4zM5 20h14v-2H5v2z"/></svg>
+              انتخاب تصویر
+            </div>
+            <input type="file" id="slide-image-input" accept="image/*" hidden>
+          </div>
+        </div>
+        <div class="admin-modal__footer">
+          <button type="button" class="btn btn--outline" data-modal-close="slide-modal">انصراف</button>
+          <button type="submit" class="btn btn--primary">ذخیره اسلاید</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ORDER DETAIL MODAL -->
+  <div class="admin-modal-overlay" id="order-detail-modal">
+    <div class="admin-modal">
+      <div class="admin-modal__header">
+        <h3>جزئیات سفارش</h3>
+        <button type="button" class="admin-modal__close" data-modal-close="order-detail-modal">×</button>
+      </div>
+      <div class="admin-modal__body" id="order-detail-body"></div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- ===================== SCRIPTS ===================== -->
+  <script type="module" src="js/firebase.js"></script>
+  <script type="module" src="js/auth.js"></script>
+  <script type="module" src="js/script.js"></script>
+  <script type="module" src="js/chat.js"></script>
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>

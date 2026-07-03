@@ -1,0 +1,32 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment / local config (if any local tooling is added later)
+.env
+.env.local
+
+# Firebase local emulator/cache (if Firebase CLI is used later)
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# Dependency folders (not used by this static project, kept as a safeguard)
+node_modules/
+
+# Build/temp output
+dist/
+tmp/
+*.tmp

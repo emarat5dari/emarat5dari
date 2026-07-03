@@ -1,0 +1,33 @@
+{
+  "name": "عمارت ۵ دری",
+  "short_name": "عمارت ۵ دری",
+  "description": "فروشگاه تخصصی کاغذ دیواری، پرده، قرنیز، دیوارپوش PVC و ابزار دکوراتیو",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "lang": "fa-IR",
+  "dir": "rtl",
+  "background_color": "#0F3D2E",
+  "theme_color": "#0F3D2E",
+  "icons": [
+    {
+      "src": "/assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
