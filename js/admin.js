@@ -8,7 +8,7 @@
    incrementally without breaking this file.
    ========================================================================== */
 
-import { auth, storage, collections, storagePaths } from "./firebase.js";
+import { auth, collections, storagePaths, cloudinaryConfig } from "./firebase.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import {
   doc,
@@ -25,11 +25,6 @@ import {
   serverTimestamp,
   Timestamp
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
-import {
-  ref,
-  uploadBytes,
-  getDownloadURL
-} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js";
 import { showToast, formatPrice, toggleButtonLoading, escapeHtml, formatDate } from "./script.js";
 
 /* ------------------------------------------------------------------------
@@ -89,13 +84,43 @@ document.querySelectorAll("[data-modal-close]").forEach((btn) => {
   btn.addEventListener("click", () => closeModal(btn.dataset.modalClose));
 });
 
-/** Uploads a list of File objects to Storage and returns their download URLs. */
+/**
+ * Uploads a single File to Cloudinary using an unsigned upload preset and
+ * returns its secure_url. pathFn(file.name) is kept for backward
+ * compatibility with every call site (product/category/slider/gallery
+ * uploads) — it still produces the same "folder/id/filename" style string
+ * used before with Firebase Storage, and is passed through as Cloudinary's
+ * `folder` field so uploaded assets stay organized the same way in the
+ * Cloudinary Media Library. If your unsigned preset doesn't allow an
+ * overridden folder, Cloudinary will just fall back to the preset's
+ * configured folder — the upload itself still succeeds either way.
+ */
+async function uploadImageToCloudinary(file, path) {
+  const endpoint = `https://api.cloudinary.com/v1_1/${cloudinaryConfig.cloudName}/image/upload`;
+
+  const folder = path.includes("/") ? path.slice(0, path.lastIndexOf("/")) : "";
+
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", cloudinaryConfig.uploadPreset);
+  if (folder) formData.append("folder", folder);
+
+  const response = await fetch(endpoint, { method: "POST", body: formData });
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data?.error?.message || "خطا در آپلود تصویر به Cloudinary");
+  }
+
+  return data.secure_url;
+}
+
+/** Uploads a list of File objects to Cloudinary and returns their secure_url values. */
 async function uploadImages(files, pathFn) {
   const urls = [];
   for (const file of files) {
-    const storageRef = ref(storage, pathFn(file.name));
-    await uploadBytes(storageRef, file);
-    urls.push(await getDownloadURL(storageRef));
+    const url = await uploadImageToCloudinary(file, pathFn(file.name));
+    urls.push(url);
   }
   return urls;
 }
