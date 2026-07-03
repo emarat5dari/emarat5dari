@@ -1,7 +1,8 @@
 /* ==========================================================================
    عمارت ۵ دری — firebase.js
    Central Firebase initialization. Every other script imports its Firebase
-   instances (auth, db, storage) and collection references from this file.
+   instances (auth, db) and collection references from this file. Also
+   exports the Cloudinary config used for image uploads (see admin.js).
    Uses the Firebase v10 modular SDK loaded directly from the CDN, so no
    build step / bundler is required — fully compatible with GitHub Pages.
    ========================================================================== */
@@ -17,7 +18,6 @@ import {
   collection,
   enableIndexedDbPersistence
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
-import { getStorage } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js";
 
 /* ------------------------------------------------------------------------
    1. FIREBASE CONFIG
@@ -35,12 +35,25 @@ const firebaseConfig = {
 };
 
 /* ------------------------------------------------------------------------
+   1b. CLOUDINARY CONFIG
+   Image uploads (products, categories, homepage slider, gallery) now go
+   to Cloudinary instead of Firebase Storage, since Storage requires the
+   Blaze billing plan. Replace these two values with your own Cloudinary
+   account's Cloud Name and an UNSIGNED upload preset created in:
+   Cloudinary Console → Settings → Upload → Upload presets → Add preset
+   (set "Signing Mode" to "Unsigned").
+   ------------------------------------------------------------------------ */
+export const cloudinaryConfig = {
+  cloudName: "YOUR_CLOUD_NAME",
+  uploadPreset: "YOUR_UNSIGNED_UPLOAD_PRESET"
+};
+
+/* ------------------------------------------------------------------------
    2. INITIALIZE CORE SERVICES
    ------------------------------------------------------------------------ */
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
-export const storage = getStorage(app);
 
 /* Keep users logged in across page reloads / tabs (needed since every
    page on the site is a separate full navigation on GitHub Pages). */
