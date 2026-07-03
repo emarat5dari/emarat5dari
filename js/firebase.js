@@ -27,6 +27,7 @@ import { getStorage } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-
 const firebaseConfig = {
   apiKey: "AIzaSyA0KbyaOfajyOdOJ_IdnaBhTf2TrqG-GgQ",
   authDomain: "emarat-5-dari.firebaseapp.com",
+  databaseURL: "https://emarat-5-dari-default-rtdb.firebaseio.com",
   projectId: "emarat-5-dari",
   storageBucket: "emarat-5-dari.firebasestorage.app",
   messagingSenderId: "255816485644",
